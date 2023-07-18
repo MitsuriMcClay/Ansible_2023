@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: lineinfile index.nginx-debian.html
+      lineinfile:
+        path: /var/www/html/index.nginx-debian.html
+        line: '<h1>Mitsuri is editing this file.</h1>'
+        insertafter: '<h1>Welcome to nginx!</h1>'

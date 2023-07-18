@@ -1,0 +1,5 @@
+my_dir: "/tmp/"
+my_file: "ansible_test"
+
+server1: "54.178.37.251"
+server2: "18.182.49.42"

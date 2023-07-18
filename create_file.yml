@@ -1,0 +1,20 @@
+---
+- hosts: all 
+  
+  name: Create a file and show ls result on Ubuntu
+  gather_facts: true
+  
+  tasks:
+    - name: create a file
+      copy:
+        dest: "{{ my_dir }}{{ my_file}}"
+        content: hello world
+
+    - name: ls
+      shell: "cat {{ my_dir }}{{ my_file}}"
+      register: result_ls
+
+    - name: result_ls
+      debug:
+        msg: "{{ result_ls.stdout }}"
+        verbosity: 2

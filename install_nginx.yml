@@ -1,0 +1,30 @@
+---
+- hosts: all
+  
+  name: Play to install nginx on Ubuntu
+  gather_facts: true
+  
+  tasks:
+    - name: install nginx from apt
+      become: true
+      apt:
+        name: nginx 
+        state: present
+        update_cache: true
+
+    - name: Start nginx
+      become: true
+      service: 
+        name: nginx 
+        enabled: Yes 
+        state: started
+           
+    - name: checking service status
+      command: systemctl status "{{ item }}"
+      with_items:
+      - nginx
+      register: result
+      ignore_errors: yes
+    - name: showing report
+      debug:
+        var: result
